@@ -67,6 +67,9 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN echo ". $HOME/.cargo/env"
 
 RUN /bin/bash -c "source /opt/ros/humble/setup.bash; colcon build --merge-install --event-handlers console_direct+ --cmake-args -DBUILD_TESTING=0"
+
+RUN apt-get install -y -q ros-humble-ros2launch
+
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
